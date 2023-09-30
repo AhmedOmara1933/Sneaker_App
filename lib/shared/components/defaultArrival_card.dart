@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../models/data_model/data_model.dart';
-import '../../modules/details_page.dart';
+import '../../modules/3.details_page.dart';
 
 // ignore: must_be_immutable
 class DefaultArrivalCard extends StatelessWidget {

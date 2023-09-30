@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sneaker_shop/layout/home_layout.dart';
+import '../layout/home_layout.dart';
 import '../shared/components/default_bottom.dart';
 
 class IntroPage extends StatelessWidget {

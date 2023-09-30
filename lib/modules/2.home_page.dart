@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sneaker_shop/models/data_model/data_model.dart';
-import 'package:sneaker_shop/shared/components/default_appbar.dart';
-import 'package:sneaker_shop/shared/cubit/cubit.dart';
-import 'package:sneaker_shop/shared/cubit/states.dart';
+import '../models/data_model/data_model.dart';
 import '../shared/components/defaultArrival_card.dart';
-import '../shared/components/default_search.dart';
 import '../shared/components/defaultPopular_card.dart';
+import '../shared/components/default_appbar.dart';
+import '../shared/components/default_search.dart';
+import '../shared/cubit/cubit.dart';
+import '../shared/cubit/states.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -32,6 +33,7 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement listener
   },
   builder: (context, state) {
+    var cubit=AppCubit.get(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 20.0),
@@ -65,7 +67,6 @@ class _HomePageState extends State<HomePage> {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => DefaultPopularCard(
                         onTap: () {
-                          AppCubit.get(context).addToMyCart();
                         },
                         mostPopular: dataModel!.data!.mostPopular![index],
                       ),

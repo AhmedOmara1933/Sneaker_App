@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/data_model/data_model.dart';
-import '../../modules/details_page.dart';
+import '../../modules/3.details_page.dart';
 
 class DefaultPopularCard extends StatelessWidget {
   final VoidCallback onTap;

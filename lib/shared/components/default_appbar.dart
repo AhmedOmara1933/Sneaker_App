@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DefaultAppBar extends StatelessWidget {
-  final String leading;
+  final String ?leading;
   final String title;
   final String ?actions;
   final VoidCallback ?leadingOnTap;
@@ -11,7 +11,7 @@ class DefaultAppBar extends StatelessWidget {
 
     DefaultAppBar(
       {super.key,
-      required this.leading,
+       this.leading,
       required this.title,
         this.actions,
         this.leadingOnTap,
@@ -25,9 +25,10 @@ class DefaultAppBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        leading==null?Container():
         GestureDetector(
           onTap:leadingOnTap,
-          child: Image(height: 22.0, image: AssetImage(leading)),
+          child: Image(height: 22.0, image: AssetImage(leading!)),
         ),
         Text(
           title,

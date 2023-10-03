@@ -11,11 +11,13 @@ import '2.home_page.dart';
 
 // ignore: must_be_immutable
 class DetailsPage extends StatelessWidget {
-  MostPopular? mostPopular;
-  NewArrivals? newArrivals;
   List sizes = ['28', '32', '34', '36', '38'];
+  Product product;
 
-  DetailsPage({super.key, this.mostPopular, this.newArrivals});
+  DetailsPage({
+    super.key,
+    required this.product
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,6 @@ class DetailsPage extends StatelessWidget {
         // TODO: implement listener
       },
       builder: (context, state) {
-        var cubit = AppCubit.get(context);
         return Scaffold(
           body: Stack(
             children: [
@@ -46,8 +47,7 @@ class DetailsPage extends StatelessWidget {
                     ),
                   ),
                   Image(
-                    image: AssetImage(
-                        '${mostPopular?.image == null ? newArrivals!.image : mostPopular!.image}'),
+                    image: AssetImage('${product.image}'),
                   ),
                 ],
               ),
@@ -77,7 +77,7 @@ class DetailsPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                '${mostPopular?.name == null ? newArrivals!.name : mostPopular!.name}',
+                                '${product.name}',
                                 style: GoogleFonts.acme(
                                     fontSize: 30.0,
                                     fontWeight: FontWeight.w600),
@@ -162,8 +162,7 @@ class DetailsPage extends StatelessWidget {
                                     image: AssetImage('images/dollar-sign.png'),
                                     height: 25.0,
                                   ),
-                                  Text(
-                                      '${mostPopular?.price == null ? newArrivals!.price : mostPopular!.price}',
+                                  Text('}',
                                       style: const TextStyle(
                                           letterSpacing: 1.0,
                                           fontSize: 30.0,

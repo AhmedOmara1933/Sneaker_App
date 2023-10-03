@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sneaker_shop/shared/components/defaultproduct_card.dart';
 import '../models/data_model/data_model.dart';
-import '../shared/components/defaultArrival_card.dart';
-import '../shared/components/defaultPopular_card.dart';
 import '../shared/components/default_appbar.dart';
 import '../shared/components/default_search.dart';
-import '../shared/cubit/cubit.dart';
-import '../shared/cubit/states.dart';
-
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,6 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   DataModel? dataModel;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -28,12 +25,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppCubit, AppStates>(
-  listener: (context, state) {
-    // TODO: implement listener
-  },
-  builder: (context, state) {
-    var cubit=AppCubit.get(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 20.0),
@@ -52,58 +43,33 @@ class _HomePageState extends State<HomePage> {
             ),
             // text
             Padding(
-              padding: const EdgeInsets.only(bottom: 15.0, top: 35.0),
-              child: Text('Most Popular',
+              padding: const EdgeInsets.only(bottom: 35.0, top: 35.0),
+              child: Text(
+                  'Most Popular',
                   style: GoogleFonts.acme(
                       letterSpacing: 1.0,
-                      fontSize: 25.0,
+                      fontSize: 30.0,
                       fontWeight: FontWeight.w600)),
             ),
             // most popular
-            SizedBox(
-              height: 210.0,
-              child: ListView.separated(
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => DefaultPopularCard(
-                        onTap: () {
-                        },
-                        mostPopular: dataModel!.data!.mostPopular![index],
-                      ),
-                  separatorBuilder: (context, index) => const SizedBox(
-                        width: 20.0,
-                      ),
-                  itemCount: dataModel!.data!.mostPopular!.length),
-            ),
-            // text
-            Padding(
-              padding: const EdgeInsets.only(bottom: 15.0, top: 35.0),
-              child: Text('New Arrivals',
-                  style: GoogleFonts.acme(
-                      fontSize: 25.0,
-                      letterSpacing: 1.0,
-                      fontWeight: FontWeight.w600)),
-            ),
-            // new arrival
-            SizedBox(
-              height: 180.0,
-              child: ListView.separated(
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => DefaultArrivalCard(
-                        onTap: () {},
-                        newArrivals: dataModel!.data!.newArrivals![index],
-                      ),
-                  separatorBuilder: (context, index) => const SizedBox(
-                        width: 20.0,
-                      ),
-                  itemCount: dataModel!.data!.newArrivals!.length),
+            Expanded(
+              child: SizedBox(
+                child: ListView.separated(
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => DefaultProductCard(
+                          product: dataModel!.product![index],
+                          onTap: () {},
+                        ),
+                    separatorBuilder: (context, index) => const SizedBox(
+                          width: 20.0,
+                        ),
+                    itemCount: dataModel!.product!.length),
+              ),
             ),
           ],
         ),
       ),
     );
-  },
-);
   }
 }

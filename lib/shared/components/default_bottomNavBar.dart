@@ -5,7 +5,7 @@ class DefaultBottomNavBar extends StatelessWidget {
  final int selectedIndex;
  final void Function(int) onItemSelected;
 
- DefaultBottomNavBar({
+ const DefaultBottomNavBar({
    super.key,
    required this.selectedIndex,
    required this.onItemSelected,
@@ -57,3 +57,5 @@ class DefaultBottomNavBar extends StatelessWidget {
     );
   }
 }
+
+//  bottom_navy_bar: ^6.0.0
